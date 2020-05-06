@@ -29,7 +29,7 @@ def callback(data):
         print("Not Going")
         command = 'z'
     ard.write(command)
-    time.sleep(0.5)
+    time.sleep(0.001)
     
 
 def listener():
