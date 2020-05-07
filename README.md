@@ -3,9 +3,9 @@ ROS Project built for augmenting a remote controlled car with self driving capab
 
 Hardware Used: 
 
-New Bright RC Car
-Raspberry Pi
-PS Eye Monocular Camera 
+- New Bright RC Car
+- Raspberry Pi
+- PS Eye Monocular Camera 
 
 
 Note: While testing, an Arduino connected to the computer is used instead of theRPi 
