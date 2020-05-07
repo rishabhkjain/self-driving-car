@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 
 import rospy
-import serial 
 from geometry_msgs.msg import Twist
 import time
+import os 
+os.environ['GPIOZERO_PIN_FACTORY'] = os.environ.get('GPIOZERO_PIN_FACTORY', 'mock')
 from gpiozero import LED
 forwardPin = 17
 backwardPin = 22
@@ -72,7 +73,7 @@ def listener():
     resetMove()
 
     rospy.Subscriber('cmd_vel', Twist, callback)
-
+    print("Initiated Controller\n")
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()
 
