@@ -4,49 +4,55 @@ import rospy
 from geometry_msgs.msg import Twist
 import time
 import os 
-os.environ['GPIOZERO_PIN_FACTORY'] = os.environ.get('GPIOZERO_PIN_FACTORY', 'mock')
-from gpiozero import LED
+
+import RPi.GPIO as GPIO
+GPIO.setmode(GPIO.BCM)
+
 forwardPin = 17
 backwardPin = 22
 leftPin   = 6
 rightPin = 19
 
+GPIO.setup(rightPin, GPIO.OUT)
+GPIO.output(rightPin, GPIO.HIGH)
+GPIO.setup(leftPin, GPIO.OUT)
+GPIO.output(leftPin, GPIO.HIGH)
+GPIO.setup(forwardPin, GPIO.OUT)
+GPIO.output(forwardPin, GPIO.HIGH)
+GPIO.setup(backwardPin, GPIO.OUT)
+GPIO.output(backwardPin, GPIO.HIGH)
 
-forward = LED(forwardPin)
-backward = LED(backwardPin)
-left = LED(leftPin)
-right = LED(rightPin)
 
 
 def moveForward():
-    backward.on()
-    left.on()
-    right.on()
-    forward.off()
+    GPIO.output(backwardPin, GPIO.HIGH)
+    GPIO.output(leftPin, GPIO.HIGH)
+    GPIO.output(rightPin, GPIO.HIGH)
+    GPIO.output(forwardPin, GPIO.LOW)
 
 def moveBackward():
-    forward.on()
-    left.on()
-    right.on()
-    backward.off()
+    GPIO.output(forwardPin, GPIO.HIGH)
+    GPIO.output(leftPin, GPIO.HIGH)
+    GPIO.output(rightPin, GPIO.HIGH)
+    GPIO.output(backwardPin, GPIO.LOW)
 
 def moveLeft():
-    backward.on()
-    forward.on()
-    right.on()
-    left.off()
+    GPIO.output(backwardPin, GPIO.HIGH)
+    GPIO.output(forwardPin, GPIO.HIGH)
+    GPIO.output(rightPin, GPIO.HIGH)
+    GPIO.output(leftPin, GPIO.LOW)
 
 def moveRight():
-    backward.on()
-    left.on()
-    forward.on()
-    right.off()
+    GPIO.output(backwardPin, GPIO.HIGH)
+    GPIO.output(leftPin, GPIO.HIGH)
+    GPIO.output(forwardPin, GPIO.HIGH)
+    GPIO.output(rightPin, GPIO.LOW)
 
 def resetMove():
-    backward.on()
-    left.on()
-    forward.on()
-    right.on()
+    GPIO.output(backwardPin, GPIO.HIGH)
+    GPIO.output(leftPin, GPIO.HIGH)
+    GPIO.output(rightPin, GPIO.HIGH)
+    GPIO.output(forwardPin, GPIO.HIGH)
 
 
 def callback(data):
