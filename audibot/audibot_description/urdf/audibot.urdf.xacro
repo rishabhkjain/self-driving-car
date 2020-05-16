@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <robot name="audibot" xmlns:xacro="http://www.ros.org/wiki/xacro">
-
+  <xacro:include filename="$(find audibot_description)/urdf/camera.urdf.xacro"/>
+  
   <xacro:property name="half_front_track_width" value="0.819" />
   <xacro:property name="half_rear_track_width" value="0.8" />
   <xacro:property name="half_wheelbase" value="1.326" />
@@ -183,5 +184,9 @@
     <mu1>${wheel_friction}</mu1>
     <mu2>${wheel_friction}</mu2>
   </gazebo>
+  <xacro:camera_sensor xyz="2 0 ${0.5}" 
+                  rpy="0 0 0"
+                  parent="base_link">
+  </xacro:camera_sensor>
 
 </robot>
