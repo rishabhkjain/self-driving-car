@@ -2,9 +2,7 @@
 
 import rospy
 from sensor_msgs.msg import Joy
-from std_msgs.msg import Float64
-from std_msgs.msg import UInt8
-import time
+from std_msgs.msg import Float64, UInt8
     
     
 throttlePub = rospy.Publisher('throttle_cmd', Float64, queue_size = 1)
